@@ -1,0 +1,127 @@
+[SETTINGS]
+{
+  "Name": "Siberdeyiz.com Register BOT Selenium",
+  "SuggestedBots": 1,
+  "MaxCPM": 0,
+  "LastModified": "2022-05-20T23:25:04.0029841+03:00",
+  "AdditionalInfo": "",
+  "RequiredPlugins": [],
+  "Author": "Raymond",
+  "Version": "1.1.2 [SB]",
+  "SaveEmptyCaptures": false,
+  "ContinueOnCustom": false,
+  "SaveHitsToTextFile": false,
+  "IgnoreResponseErrors": false,
+  "MaxRedirects": 8,
+  "NeedsProxies": false,
+  "OnlySocks": false,
+  "OnlySsl": false,
+  "MaxProxyUses": 0,
+  "BanProxyAfterGoodStatus": false,
+  "BanLoopEvasionOverride": -1,
+  "EncodeData": false,
+  "AllowedWordlist1": "",
+  "AllowedWordlist2": "",
+  "DataRules": [],
+  "CustomInputs": [],
+  "CaptchaUrl": "",
+  "IsBase64": false,
+  "FilterList": [],
+  "EvaluateMathOCR": false,
+  "SecurityProtocol": 0,
+  "ForceHeadless": false,
+  "AlwaysOpen": false,
+  "AlwaysQuit": false,
+  "QuitOnBanRetry": false,
+  "AcceptInsecureCertificates": true,
+  "DisableNotifications": true,
+  "DisableImageLoading": false,
+  "DefaultProfileDirectory": false,
+  "CustomUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36",
+  "RandomUA": false,
+  "CustomCMDArgs": "",
+  "Title": "Siberdeyiz",
+  "IconPath": "Icon\\svbfile.ico",
+  "LicenseSource": null,
+  "Message": null,
+  "MessageColor": "#FFFFFFFF",
+  "HitInfoFormat": "[{hit.Type}][{hit.Proxy}] {hit.Data} - [{hit.CapturedString}]",
+  "AuthorColor": "#FFFFB266",
+  "WordlistColor": "#FFB5C2E1",
+  "BotsColor": "#FFA8FFFF",
+  "CustomInputColor": "#FFD6C7C7",
+  "CPMColor": "#FFFFFFFF",
+  "ProgressColor": "#FFAD93E3",
+  "HitsColor": "#FF66FF66",
+  "CustomColor": "#FFFFB266",
+  "ToCheckColor": "#FF7FFFD4",
+  "FailsColor": "#FFFF3333",
+  "RetriesColor": "#FFFFFF99",
+  "OcrRateColor": "#FF4698FD",
+  "ProxiesColor": "#FFFFFFFF"
+}
+
+[SCRIPT]
+BROWSERACTION Open 
+  USERAGENT "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" 
+
+NAVIGATE "https://siberdeyiz.com/" 
+
+FUNCTION Delay "6000" 
+
+ELEMENTACTION XPath "//*[@id=\"elUserNav\"]/li" 
+  WaitForElement 
+
+ELEMENTACTION XPath "//*[@id=\"elUserNav\"]/li" 
+  Click 
+
+ELEMENTACTION XPath "//*[@id=\"ipsLayout_mainArea\"]/div/div[2]/div[1]/ul/li[2]/a" 
+  WaitForElement 
+
+ELEMENTACTION XPath "//*[@id=\"ipsLayout_mainArea\"]/div/div[2]/div[1]/ul/li[2]/a" 
+  Click 
+
+!FUNCTION RandomString "SiberderyizRegisterCfgSatılırByRaymond0004?h?h?h?h" -> VAR "k.a" 
+
+FUNCTION RandomString "<e>" -> VAR "k.a" 
+
+FUNCTION RandomString "?h?h?h?h?h?h?h?h?h@gmail.com" -> VAR "email" 
+
+FUNCTION RandomString "?h?h?h?h?h?h?u?u?d?h?h?h" -> VAR "şifre" 
+
+#wait_user ELEMENTACTION XPath "//*[@id=\"kayitform\"]/input[1]" 
+  WaitForElement 
+
+#send_user ELEMENTACTION XPath "//*[@id=\"kayitform\"]/input[1]" 
+  SendKeys "<k.a>" 
+
+#wait_email ELEMENTACTION XPath "//*[@id=\"kayitform\"]/input[2]" 
+  WaitForElement 
+
+#send_email ELEMENTACTION XPath "//*[@id=\"kayitform\"]/input[2]" 
+  SendKeys "<email>" 
+
+#wait_pass ELEMENTACTION XPath "//*[@id=\"kayitform\"]/input[3]" 
+  WaitForElement 
+
+#send_pass ELEMENTACTION XPath "//*[@id=\"kayitform\"]/input[3]" 
+  SendKeys "<şifre>" 
+
+#verify_pass ELEMENTACTION XPath "//*[@id=\"kayitform\"]/input[4]" 
+  SendKeys "<şifre>" 
+
+#register_comptlate ELEMENTACTION XPath "//*[@id=\"kayitform\"]/button" 
+  Click 
+
+ELEMENTACTION Selector "body > div.swal2-container.swal2-center.swal2-backdrop-show > div > div.swal2-actions > button.swal2-confirm.swal2-styled" 
+  WaitForElement 
+
+ELEMENTACTION Selector "body > div.swal2-container.swal2-center.swal2-backdrop-show > div > div.swal2-actions > button.swal2-confirm.swal2-styled" 
+  Click 
+
+KEYCHECK 
+  KEYCHAIN Failure OR 
+    KEY "Kayıt Başarısız!" 
+  KEYCHAIN Success OR 
+    KEY "data-original-title=\"Profile Git\">" 
+
